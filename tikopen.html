@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TikTok URL Cleaner</title>
+  <style>
+    /* -------------------------
+       Basic Reset & Dark Theme
+       ------------------------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #121212;
+      color: #f0f0f0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    h1 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 90%;
+      max-width: 400px;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid #555;
+      background-color: #2c2c2c;
+      color: #fff;
+      margin-bottom: 1rem;
+      outline: none;
+    }
+    input[type="text"]:focus {
+      border-color: #888;
+    }
+    button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      background: #2ab3bf; /* a teal-ish color */
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    button:hover {
+      background: #24909a;
+    }
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <h1>TikTok URL Cleaner</h1>
+  
+  <form onsubmit="cleanUrl(event)">
+    <label for="urlInput">Paste TikTok URL:</label>
+    <input 
+      type="text" 
+      id="urlInput" 
+      placeholder="https://www.tiktok.com/@someuser/video/123456789?..." 
+      required 
+    />
+    <button type="submit">Open Cleaned URL</button>
+  </form>
+
+  <div class="footer">
+    &copy; 2025 
+  </div>
+
+  <script>
+    function cleanUrl(event) {
+      event.preventDefault();
+      const urlInput = document.getElementById("urlInput");
+      const originalUrl = urlInput.value.trim();
+
+      if (!originalUrl) {
+        alert("Please enter a valid TikTok URL.");
+        return;
+      }
+
+      // Split at the first "?"
+      const cleanedUrl = originalUrl.split("?")[0];
+
+      // Open in a new tab
+      window.open(cleanedUrl, "_blank");
+    }
+  </script>
+</body>
+</html>
